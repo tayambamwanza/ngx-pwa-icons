@@ -123,7 +123,7 @@ var generateIcons = function () {
         });
 
         if (inputFileExtension == 'png' && !dry) {
-          console.log(`🛈  Generating Favicon`.blue);
+          console.log(`🛈  Preparing Favicon`.blue);
           favicons(icon, faviconsConfig, faviconsCallback);
         } else {
           console.log(`🛈  Input .png file to auto-generate favicons`.blue);
@@ -151,6 +151,8 @@ faviconsCallback = function (error, response) {
     });
   }
 };
+
+
 
 iconExists()
   .then((iconOk) => generateIcons())
