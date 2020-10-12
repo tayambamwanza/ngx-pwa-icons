@@ -87,6 +87,7 @@ var generateIcons = function () {
     Jimp.read(icon)
         .then(image => {
             const fileExtension = name.slice((name.lastIndexOf(".") - 1 >>> 0) + 2);
+            const inputFileExtension = icon.slice((icon.lastIndexOf(".") - 1 >>> 0) + 2);
             if (fileExtension == 'png' || fileExtension == 'jpg') {
                 size.forEach((wh) => {
                     const outputName = name.split('*').join(wh);
