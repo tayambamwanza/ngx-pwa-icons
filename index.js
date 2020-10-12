@@ -171,6 +171,13 @@ generateIcoFile = function (faviconOutput) {
     fs.writeFileSync(`${faviconOutput}/favicon.ico`, file);
     console.log(`✓ ${faviconOutput}/favicon.ico`.green);
     console.log(`🛈  Cleaning up`.blue);
+    
+
+    files.paths.map((file) => {
+      fs.unlinkSync(file);
+      console.log(`✓ ${file} cleaned up`.green);
+    });
+
     console.log(`★ Finished`.yellow);
   });
 };
