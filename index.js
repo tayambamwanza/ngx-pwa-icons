@@ -15,7 +15,7 @@ const faviconsConfig = {
   path: './src',
   icons: {
     android: false,
-    appleIcon: false,
+    appleIcon: ['apple-touch-icon.png'],
     appleStartup: false,
     coast: false,
     favicons: ['favicon-48x48.png', 'favicon-32x32.png', 'favicon-16x16.png'],
@@ -119,6 +119,7 @@ var generateIcons = function () {
         });
 
         if (inputFileExtension == 'png' && !dry) {
+          faviconsConfig.path = faviconOutput;
           favicons(icon, faviconsConfig, faviconsCallback);
         } else {
           console.log(`🛈  Input .png file to auto-generate favicons`.blue);
@@ -140,16 +141,16 @@ faviconsCallback = function (error, response) {
   if (error) {
     console.log(`✗ favicon error: ${error.message}`.red);
   } else {
+    console.log(`🛈  Generating Favicons`.blue);
     response.images.map((image) => {
       fs.writeFileSync(`${faviconOutput}/${image.name}`, image.contents);
     });
-
+    console.log(`✓ ${faviconOutput}/apple-touch-icon.png`.green);
     generateIcoFile(faviconOutput);
   }
 };
 
 generateIcoFile = function (faviconOutput) {
-  console.log(`🛈  Generating Favicon`.blue);
 
   const files = {
     content: [
