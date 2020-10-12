@@ -152,6 +152,15 @@ faviconsCallback = function (error, response) {
   }
 };
 
+generateIcoFile = function(faviconOutput) {
+    console.log(`🛈  Generating Favicon`.blue);
+
+    const files = [
+        fs.readFileSync(`${faviconOutput}/favicon-16x16.png`),
+        fs.readFileSync(`${faviconOutput}/favicon-32x32.png`),
+        fs.readFileSync(`${faviconOutput}/favicon-48x48.png`)
+    ];
+}
 
 
 iconExists()
