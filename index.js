@@ -124,7 +124,11 @@ var generateIcons = function () {
 faviconsCallback = function (error, response) { 
     if (error) { 
         console.log(`✗ favicon error: ${error.message}`.red);
-    }
+    } else {
+        response.images.forEach((image) => { 
+            console.log(`${faviconOutput}/${image.name}`); 
+        }) 
+    }  
 };
 
 iconExists()
