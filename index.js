@@ -119,7 +119,6 @@ var generateIcons = function () {
         });
 
         if (inputFileExtension == 'png' && !dry) {
-          console.log(`🛈  Preparing Favicon`.blue);
           favicons(icon, faviconsConfig, faviconsCallback);
         } else {
           console.log(`🛈  Input .png file to auto-generate favicons`.blue);
@@ -143,7 +142,6 @@ faviconsCallback = function (error, response) {
   } else {
     response.images.map((image) => {
       fs.writeFileSync(`${faviconOutput}/${image.name}`, image.contents);
-      console.log(`✓ ${faviconOutput}/${image.name}`.green);
     });
 
     generateIcoFile(faviconOutput);
@@ -169,15 +167,12 @@ generateIcoFile = function (faviconOutput) {
 
   toIco(files.content).then((file) => {
     fs.writeFileSync(`${faviconOutput}/favicon.ico`, file);
-    console.log(`✓ ${faviconOutput}/favicon.ico`.green);
-    console.log(`🛈  Cleaning up`.blue);
     
-
     files.paths.map((file) => {
       fs.unlinkSync(file);
-      console.log(`✓ ${file} cleaned up`.green);
     });
 
+    console.log(`✓ ${faviconOutput}/favicon.ico`.green);
     console.log(`★ Finished`.yellow);
   });
 };
