@@ -103,7 +103,11 @@ var generateIcons = function () {
           }
         });
 
-
+        if (inputFileExtension == 'png' && !dry) {
+            
+          } else {
+            console.log(`🛈  Input .png file to auto-generate favicons`.blue);
+          }
 
         if (dry) {
           console.log(`NOTE: Run with "dry run" no changes were made.`.yellow);
