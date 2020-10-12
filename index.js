@@ -1,6 +1,7 @@
 const Jimp = require('jimp');
 const favicons = require('favicons');
 const colors = require('colors');
+const toIco = require('to-ico');
 const fs = require('fs');
 
 let icon = './icon.png';
