@@ -1,8 +1,11 @@
 # ngx-pwa-icons
 
-![PWA icons](./bin/ngx-pwa-icons.png)
+![PWA icons](./bin/ngx-pwa-icons_2.png)
 
-Automatic icon generator for Angular 6+ with PWA.    
+Automatic icon generator for Angular with PWA 
+
+**Supports:** version 6+ | **Last Tested:** version 10.   
+
 Create an icon in the root folder of your Angular project and use `ngx-pwa-icons` to automatically resize and replace the original PWA icons.
 
 ### Installing globally
@@ -35,6 +38,7 @@ Then run:
 ```bash
 $ ngx-pwa-icons
 ```
+N.B. If `apple-touch-icon.png` is generated, please add it to the **assets** array of `angular.json` so that it will be compiled with the app.
 
 For good results, your `icon.png` file should be:
 
@@ -52,5 +56,7 @@ For good results, your `icon.png` file should be:
 `-fo` or `--faviconOutput` Output folder for favicon.ico  (defaults to **"./src"**) 
 `-s` or `--size` Resize icons to px  (defaults to **"512, 384, 192, 152, 144, 128, 96, 72"**)   
 `-n` or `--name` Icon name.   
-Replaces wildcard character * with icons size  (defaults to **"icon-\*x\*.png"**)  
+
+Replace wildcard character * with icons size  (defaults to **"icon-\*x\*.png"**)  
+
 Eg: `ngx-pwa-icons -s "100,200,300" -n "icon_*_*.png"` generates **icon_100_100.png**, **icon_200_200.png** and **icon_300_300.png**, 
