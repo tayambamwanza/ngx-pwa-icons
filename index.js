@@ -104,7 +104,7 @@ var generateIcons = function () {
         });
 
         if (inputFileExtension == 'png' && !dry) {
-            
+            console.log(`🛈  Generating Favicon`.blue);
           } else {
             console.log(`🛈  Input .png file to auto-generate favicons`.blue);
           }
