@@ -119,6 +119,7 @@ var generateIcons = function () {
         });
 
         if (inputFileExtension == 'png' && !dry) {
+          faviconsConfig.path = faviconOutput;
           favicons(icon, faviconsConfig, faviconsCallback);
         } else {
           console.log(`🛈  Input .png file to auto-generate favicons`.blue);
