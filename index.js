@@ -18,15 +18,11 @@ const faviconsConfig = {
     appleIcon: false,
     appleStartup: false,
     coast: false,
-    favicons: [
-        "favicon-48x48.png",
-        "favicon-32x32.png",
-        "favicon-16x16.png",
-    ],
+    favicons: ['favicon-48x48.png', 'favicon-32x32.png', 'favicon-16x16.png'],
     firefox: false,
     windows: false,
     yandex: false,
-  }
+  },
 };
 
 argv = require('yargs')
@@ -146,28 +142,38 @@ faviconsCallback = function (error, response) {
     console.log(`✗ favicon error: ${error.message}`.red);
   } else {
     response.images.map((image) => {
-    fs.writeFileSync (`${faviconOutput}/${image.name}`, image.contents);
+      fs.writeFileSync(`${faviconOutput}/${image.name}`, image.contents);
       console.log(`✓ ${faviconOutput}/${image.name}`.green);
     });
+
+    generateIcoFile(faviconOutput);
   }
 };
 
-generateIcoFile = function(faviconOutput) {
-    console.log(`🛈  Generating Favicon`.blue);
+generateIcoFile = function (faviconOutput) {
+  console.log(`🛈  Generating Favicon`.blue);
 
-    const files = [
-        fs.readFileSync(`${faviconOutput}/favicon-16x16.png`),
-        fs.readFileSync(`${faviconOutput}/favicon-32x32.png`),
-        fs.readFileSync(`${faviconOutput}/favicon-48x48.png`)
-    ];
+  const files = {
+    content: [
+      fs.readFileSync(`${faviconOutput}/favicon-16x16.png`),
+      fs.readFileSync(`${faviconOutput}/favicon-32x32.png`),
+      fs.readFileSync(`${faviconOutput}/favicon-48x48.png`),
+    ],
 
-    toIco(files).then(contents => {
-        fs.writeFileSync(`${faviconOutput}/favicon.ico`, contents);
-        console.log(`✓ ${faviconOutput}/favicon.ico`.green);
-        console.log(`🛈  Cleaning up`.blue);
-    });
-}
+    paths: [
+      `${faviconOutput}/favicon-16x16.png`,
+      `${faviconOutput}/favicon-32x32.png`,
+      `${faviconOutput}/favicon-48x48.png`,
+    ],
+  };
 
+  toIco(files.content).then((file) => {
+    fs.writeFileSync(`${faviconOutput}/favicon.ico`, file);
+    console.log(`✓ ${faviconOutput}/favicon.ico`.green);
+    console.log(`🛈  Cleaning up`.blue);
+    console.log(`★ Finished`.yellow);
+  });
+};
 
 iconExists()
   .then((iconOk) => generateIcons())
