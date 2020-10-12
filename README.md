@@ -49,6 +49,7 @@ For good results, your `icon.png` file should be:
 `-d` or `--dry-run` Run through without making any changes  
 `-i` or `--icon` Original icon to convert (defaults to **"./icon.png"**)   
 `-o` or `--output` Output folder  (defaults to **"./src/assets/icons"**)   
+`-fo` or `--faviconOutput` Output folder for favicon.ico  (defaults to **"./src"**) 
 `-s` or `--size` Resize icons to px  (defaults to **"512, 384, 192, 152, 144, 128, 96, 72"**)   
 `-n` or `--name` Icon name.   
 Replaces wildcard character * with icons size  (defaults to **"icon-\*x\*.png"**)  

@@ -1,9 +1,11 @@
 const Jimp = require('jimp');
+const favicons = require('favicons');
 const colors = require('colors');
 const fs = require('fs');
 
 let icon = './icon.png';
 let output = './src/assets/icons';
+let faviconOutput = './src';
 let size = '512, 384, 192, 152, 144, 128, 96, 72';
 let name = 'icon-*x*.png';
 let dry;
@@ -31,6 +33,13 @@ argv = require('yargs')
             requiresArg: true,
             required: false
         },
+        faviconOutput: {
+            alias: 'fo',
+            description: "Output folder for favicon.ico",
+            default: output,
+            requiresArg: true,
+            required: false
+        },
         size: {
             alias: 's',
             description: "Resize to",
@@ -50,6 +59,7 @@ argv = require('yargs')
 
 icon = argv.icon ? argv.icon : icon;
 output = argv.output ? argv.output : output;
+faviconOutput = argv.faviconOutput ? argv.faviconOutput : faviconOutput;
 name = argv.name ? argv.name : name;
 dry = argv.d ? true : false;
 console.log('dry', dry);
