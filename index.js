@@ -160,6 +160,12 @@ generateIcoFile = function(faviconOutput) {
         fs.readFileSync(`${faviconOutput}/favicon-32x32.png`),
         fs.readFileSync(`${faviconOutput}/favicon-48x48.png`)
     ];
+
+    toIco(files).then(contents => {
+        fs.writeFileSync(`${faviconOutput}/favicon.ico`, contents);
+        console.log(`✓ ${faviconOutput}/favicon.ico`.green);
+        console.log(`🛈  Cleaning up`.blue);
+    });
 }
 
 
