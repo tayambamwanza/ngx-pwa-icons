@@ -1,6 +1,6 @@
 # ngx-pwa-icons
 
-![PWA icons](./bin/ngx-pwa-icons.png)
+![PWA icons](./bin/ngx-pwa-icons_2.png)
 
 Automatic icon generator for Angular with PWA 
 
