@@ -10,6 +10,24 @@ let size = '512, 384, 192, 152, 144, 128, 96, 72';
 let name = 'icon-*x*.png';
 let dry;
 
+const faviconsConfig = {
+  path: './src',
+  icons: {
+    android: false,
+    appleIcon: false,
+    appleStartup: false,
+    coast: false,
+    favicons: [
+        "favicon-48x48.png",
+        "favicon-32x32.png",
+        "favicon-16x16.png",
+    ],
+    firefox: false,
+    windows: false,
+    yandex: false,
+  }
+};
+
 argv = require('yargs')
   .usage('Generate Angular-PWA icons\nUsage: $0 [options]')
   .help('help')
@@ -38,7 +56,7 @@ argv = require('yargs')
     faviconOutput: {
       alias: 'fo',
       description: 'Output folder for favicon.ico',
-      default: output,
+      default: faviconOutput,
       requiresArg: true,
       required: false,
     },
@@ -104,10 +122,11 @@ var generateIcons = function () {
         });
 
         if (inputFileExtension == 'png' && !dry) {
-            console.log(`🛈  Generating Favicon`.blue);
-          } else {
-            console.log(`🛈  Input .png file to auto-generate favicons`.blue);
-          }
+          console.log(`🛈  Generating Favicon`.blue);
+          favicons(icon, faviconsConfig, faviconsCallback);
+        } else {
+          console.log(`🛈  Input .png file to auto-generate favicons`.blue);
+        }
 
         if (dry) {
           console.log(`NOTE: Run with "dry run" no changes were made.`.yellow);
@@ -121,14 +140,15 @@ var generateIcons = function () {
     });
 };
 
-faviconsCallback = function (error, response) { 
-    if (error) { 
-        console.log(`✗ favicon error: ${error.message}`.red);
-    } else {
-        response.images.forEach((image) => { 
-            console.log(`${faviconOutput}/${image.name}`); 
-        }) 
-    }  
+faviconsCallback = function (error, response) {
+  if (error) {
+    console.log(`✗ favicon error: ${error.message}`.red);
+  } else {
+    response.images.map((image) => {
+    fs.writeFileSync (`${faviconOutput}/${image.name}`, image.contents);
+      console.log(`✓ ${faviconOutput}/${image.name}`.green);
+    });
+  }
 };
 
 iconExists()
