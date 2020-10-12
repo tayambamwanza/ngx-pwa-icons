@@ -121,6 +121,12 @@ var generateIcons = function () {
     });
 };
 
+faviconsCallback = function (error, response) { 
+    if (error) { 
+        console.log(`✗ favicon error: ${error.message}`.red);
+    }
+};
+
 iconExists()
   .then((iconOk) => generateIcons())
   .catch((err) => console.log(`✗  ${err}`.red));
